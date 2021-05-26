@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
+import Image from 'next/image'
 
 const Container = styled.div`
       display: flex;
@@ -44,33 +45,35 @@ const CardButtonBack = styled.button`
         background-color: grey;
       }
 `
-
 const Post = () => {
 
   const [data, setData] = useState({});
 
-  const charFetch = (value) => {
-
-    const url = `https://rickandmortyapi.com/api/character/${value}`
-    fetch(url)
-      .then(res => res.json())
-      .then(data => setData(data))
-      .catch(console.log)
-  }
-
   const router = useRouter()
   const { pid } = router.query
 
+
   useEffect(() => {
-    if (pid) {
-      charFetch(pid)
+    const charFetch = (value) => {
+      const url = `https://rickandmortyapi.com/api/character/${value}`
+      fetch(url)
+        .then(res => res.json())
+        .then(data => setData(data))
     }
+
+    const isPid = pid ? charFetch(pid) : null
+    return isPid
   }, [pid])
+
   return (
     <Container>
       <Card>
         <div>
-          <img src={data.image} alt={data.name} />
+          <img
+          src={data.image} 
+          alt={data.name}
+
+           />
         </div>
         <CardsUserInfo>
           <div>

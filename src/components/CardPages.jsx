@@ -22,10 +22,16 @@ const CardNumberIndex = styled.p`
 
 export const CardPages = ({ value, setValue }) => {
     const handleAdd = () => {
-        setValue(value + 1)
+        setTimeout(() => {
+            setValue(value + 1)
+        }, 100);
     }
     const handleSubstract = () => {
-        const Substract = value > 1 ? setValue(value - 1) : setValue(value = 1)
+        const Substract = value > 1 ? 
+        setTimeout(() => {
+            setValue(value - 1)
+        }, 100) :
+         setValue(value = 1)
         return Substract
     }
     return (

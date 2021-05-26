@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react'
 
-const useFetch = () => {
+import { useEffect, useState } from 'react'
 
-  const GetCharacters = async () => {
-    const url = `https://rickandmortyapi.com/api/character`
-    const res = await fetch(url)
-    const { results } = await res.json()
-    console.log(results)
-    return results
+export const GetCharacters = (value) => {
+
+    const [data, setData] = useState([]);
+    
+    const useFetch = async(value) => {
+      const url = `https://rickandmortyapi.com/api/character?page=${value}`
+      const res = await fetch(url)
+      const { results } = await res.json()
+      setData(results)
+    }
+    useEffect(() => {
+      setTimeout(() => {
+        const isValue = value ?  useFetch(value) : null
+        
+        return isValue
+      }, 300);
+    }, [value])
+
+    return data
   }
-
-  useEffect(() => {
-    GetCharacters()
-    console.log('datos')
-  }, [])
-
-}
-
-
-export default useFetch
+  

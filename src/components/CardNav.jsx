@@ -2,8 +2,8 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 const CardNavs = styled.div`
-    top: 0;
-    position: sticky;
+    /* top: 0;
+    position: sticky; */
     width: 100%;
     height: auto;
     background: #E9E9E9;
