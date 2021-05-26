@@ -5,7 +5,7 @@ import Link from 'next/link'
 const CardDiv = styled.div`
       text-decoration: none;
       color:black;
-      margin: 40px 70px;
+      margin: 20px 30px;
       width: 323px;
       /* height: 370px; */
       background: #E1E1E1;

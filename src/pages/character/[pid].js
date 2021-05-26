@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import styled from '@emotion/styled'
-import Link from 'next/link'
-
 
 const Container = styled.div`
       display: flex;
@@ -17,17 +15,18 @@ const Container = styled.div`
 `
 const Card = styled.div`
       display: flex;
+      flex-direction: column;
       background: #E1E1E1;
       box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.25);
       border-radius: 10px;
       img {
-        border-radius: 10px 0 0 10px;
+        border-radius: 10px 10px 0 0;
         width: 323px;
         height: 100%;
       }
 `
 const CardsUserInfo = styled.div`
-      width: 100%;
+
       padding: 30px;
       display: flex;
       flex-direction: column;
@@ -47,6 +46,7 @@ const CardButtonBack = styled.button`
 `
 
 const Post = () => {
+
   const [data, setData] = useState({});
 
   const charFetch = (value) => {
@@ -66,7 +66,6 @@ const Post = () => {
       charFetch(pid)
     }
   }, [pid])
-
   return (
     <Container>
       <Card>
@@ -85,9 +84,7 @@ const Post = () => {
             </ul>
           </div>
           <div>
-            <Link href='http://localhost:3000/'>
-              <CardButtonBack>Back</CardButtonBack>
-            </Link>
+            <CardButtonBack onClick={() => router.back()}>Back</CardButtonBack>
           </div>
         </CardsUserInfo>
       </Card>
