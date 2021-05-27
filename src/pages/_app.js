@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-
+import '../styles/index.css'
 const GlobalStyle = createGlobalStyle`
       body{
         *{

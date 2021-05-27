@@ -2,50 +2,32 @@ import React from 'react'
 import styled from '@emotion/styled'
 
 const CardNavs = styled.div`
-    /* top: 0;
-    position: sticky; */
+    top: 0;
+    position: absolute;
     width: 100%;
+    font-family: Roboto;
     height: auto;
     background: #E9E9E9;
     box-shadow: 0px 8px 26px rgba(0, 0, 0, 0.25);
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    justify-content:flex-start;
+    display: flex;
     justify-content: space-around;
+    align-items: center;
 `
 const CardNavTitle = styled.h1`
       font-family: Rock Salt;
-`
-const CardNavInput = styled.input`
-      margin-top:20px;
-      margin-bottom: 20px;
-      width: 273px;
-      padding: 10px;
-       border: none;
-      background: #FFFFFF;
-        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
+      margin-left: 30px;
 `
 
-export const CardNav = ({ useCategory }) => {
-    const [character,setCharacter] = useCategory
-
-    const handleChange = (event) => {
-          const name = event.target.value
-          function capitalizaPrimeraLetra(str) {
-              return str.charAt(0).toUpperCase() + str.slice(1)
-          }
-        setCharacter(capitalizaPrimeraLetra(name))
-    }
+export const CardNav = ({ name, newCoins }) => {
     return (
         <CardNavs>
             <CardNavTitle>Rick and Morty</CardNavTitle>
-            <CardNavInput
-                value={character}
-                onChange={handleChange}
-                type="text"
-                placeholder="Search..."
-            />
+            <div>
+                <h2>{name}</h2>
+                <p>Stackly Coins:{newCoins}</p>
+            </div>
         </CardNavs>
     )
 }
