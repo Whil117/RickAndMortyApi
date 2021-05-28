@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 const CardNavContainer = styled.div`
       display:flex;
-      justify-content: flex-end;
+      justify-content: center;
       margin-top: 100px;
 `
 

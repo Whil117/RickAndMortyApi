@@ -15,23 +15,29 @@ const CardNavs = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 10px;
+
 `
 const CardNavTitle = styled.h1`
       font-size: larger;
       font-family: Rock Salt;
       margin-left: 30px;
+      padding: 10px;
+`
+const User = styled.div`
+          padding: 10px;
 `
 
-export const CardNav = () => {
-    const {username,coins} = useContext(UserContext);
+export const CardNav = ({userCoin}) => {
+
+    const { username} = useContext(UserContext);
+
     return (
         <CardNavs>
             <CardNavTitle>Rick and Morty</CardNavTitle>
-            <div>
+            <User>
                 <h2>{username}</h2>
-                <p>Stackly Coins:{coins}</p>
-            </div>
+                <p>Stackly Coins:{userCoin}</p>
+            </User>
         </CardNavs>
     )
 }

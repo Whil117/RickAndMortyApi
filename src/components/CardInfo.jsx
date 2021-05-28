@@ -1,6 +1,7 @@
 import React, { useState} from 'react'
 import { CardNav } from './CardNav'
 import CardBuy from './CardBuy'
+import { UseLocalStorage } from '../hooks/UseLocalStorage'
 import styled from '@emotion/styled'
 
 const Container = styled.div`
@@ -62,10 +63,12 @@ export const CardInfo = ({ data, router }) => {
   const { id, image, name, status, species, gender, created, origin } = data
   const [validBuy, setValidBuy] = useState(null);
   const [price, setPrice] = useState(false)
+  const [userCoin, setUserCoin] = UseLocalStorage('coin','')
+  // const [priceCard, setPriceCard] = UseLocalStorage('card','')
 
   return (
     <>
-      <CardNav />
+      <CardNav userCoin={userCoin}/>
       <Container>
         <Card>
           <div>
@@ -101,7 +104,10 @@ export const CardInfo = ({ data, router }) => {
           </CardsUserInfo>
         </Card>
       </Container>
-      {validBuy && <CardBuy cardId={id} setValidBuy={setValidBuy} setPrice={setPrice} />}
+      {validBuy && <CardBuy 
+      setUserCoin={setUserCoin}
+       cardId={id} setValidBuy={setValidBuy} 
+       setPrice={setPrice} />}
     </>
   )
 }
