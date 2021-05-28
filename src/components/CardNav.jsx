@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../hooks/userContext'
 import styled from '@emotion/styled'
 
 const CardNavs = styled.div`
@@ -14,19 +15,22 @@ const CardNavs = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding: 10px;
 `
 const CardNavTitle = styled.h1`
+      font-size: larger;
       font-family: Rock Salt;
       margin-left: 30px;
 `
 
-export const CardNav = ({ name, newCoins }) => {
+export const CardNav = () => {
+    const {username,coins} = useContext(UserContext);
     return (
         <CardNavs>
             <CardNavTitle>Rick and Morty</CardNavTitle>
             <div>
-                <h2>{name}</h2>
-                <p>Stackly Coins:{newCoins}</p>
+                <h2>{username}</h2>
+                <p>Stackly Coins:{coins}</p>
             </div>
         </CardNavs>
     )

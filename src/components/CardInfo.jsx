@@ -1,7 +1,7 @@
-import React, { useState,useEffect } from 'react'
-import styled from '@emotion/styled'
+import React, { useState} from 'react'
 import { CardNav } from './CardNav'
 import CardBuy from './CardBuy'
+import styled from '@emotion/styled'
 
 const Container = styled.div`
       display: flex;
@@ -12,14 +12,16 @@ const Container = styled.div`
       color:black;
       height: 100vh;
       width: 100%;
-
-
+      background-color: #F5F5F5;
 `
 const Card = styled.div`
+      margin: 10px;
+      margin-top: 50px;
+      width:300px;
       display: flex;
       flex-direction: column;
-      background: #E1E1E1;
-      box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.25);
+      background: #F5F5F5;
+      box-shadow: 5px 5px 20px 5px rgba(100, 100, 100, 0.25);
       border-radius: 10px;
       img {
         border-radius: 10px 10px 0 0;
@@ -28,53 +30,42 @@ const Card = styled.div`
       }
 `
 const CardsUserInfo = styled.div`
-
-      padding: 30px;
+      /* padding: 30px; */
+      padding-top:10px;
+      padding-bottom: 20px;
+      padding-left: 30px;
+      padding-right: 12px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      height: 190px;
   
 `
 const CardsButtons = styled.div`
       display:flex;
+      align-items: center;
       justify-content: space-around;
 `
-const CardButtonBack = styled.button`
+const CardButton = styled.button`
       border: none;
       color: white;
-      border-radius: 20px;
-      background-color: black;
+      border-radius: 15px;
       font-size: larger;
       padding: 5px 10px;
+      background-color: ${({primary}) => primary ? '#49B240' : '#242424' }
 `
-const CardButtonBuy = styled.button`
-      border: none;
-      color: white;
-      border-radius: 20px;
-      background-color: #49B240;
-      font-size: larger;
-      padding: 5px 10px;
-      ::hover{
-        background-color: grey;
-      }
+const Price = styled.h3`
+      color:${({primary}) => primary ? 'red' : '#242424'}
 `
-// const user = {
-//   username: 'Whil',
-//   coins: 10,
-// }
-
-export const CardInfo = ({ data, router ,username,coins}) => {
+export const CardInfo = ({ data, router }) => {
 
   const { id, image, name, status, species, gender, created, origin } = data
   const [validBuy, setValidBuy] = useState(null);
-  const [newCoins, setCoins] = useState(coins)
-  console.log(username)
-  useEffect(() => {
-    localStorage.setItem('coins', coins);
-  }, [coins]);
+  const [price, setPrice] = useState(false)
+
   return (
     <>
-      <CardNav name={username} newCoins={newCoins}/>
+      <CardNav />
       <Container>
         <Card>
           <div>
@@ -88,23 +79,29 @@ export const CardInfo = ({ data, router ,username,coins}) => {
             <div>
               <h2>{name}</h2>
               <ul>
-                <li>Status:{status}</li>
-                <li>Species:{species}</li>
-                <li>Gender:{gender}</li>
-                <li>Origin:{origin?.name}</li>
-                <li>Created:{created}</li>
+                <li><b>Status:</b>{status}</li>
+                <li><b>Species:</b>{species}</li>
+                <li><b>Gender:</b>{gender}</li>
+                <li><b>Origin:</b>{origin?.name}</li>
+                <li><b>Created:</b>{created}</li>
               </ul>
             </div>
             <CardsButtons>
-              <CardButtonBack onClick={() => router.back()}>Back</CardButtonBack>
-              <CardButtonBuy onClick={() => setValidBuy(true)}>Buy</CardButtonBuy>
+              <CardButton onClick={() => router.back()}>Back</CardButton>
+              {!price && 
+              <CardButton primary onClick={() => setValidBuy(true)}>Buy</CardButton>
+              }
+              {price  &&
+                <Price primary>Sold out</Price>
+              }
+              {!price &&
+                <Price>Price:${id}</Price>
+              }
             </CardsButtons>
           </CardsUserInfo>
         </Card>
       </Container>
-      {validBuy && <CardBuy 
-      coins={coins} setCoins={setCoins} cardId={id} setValidBuy={setValidBuy} />}
-
+      {validBuy && <CardBuy cardId={id} setValidBuy={setValidBuy} setPrice={setPrice} />}
     </>
   )
 }

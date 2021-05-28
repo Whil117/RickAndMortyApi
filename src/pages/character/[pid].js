@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import { CardInfo } from '../../components/CardInfo';
 import React, { useEffect, useState } from 'react'
-import { user } from '..';
+import { UserContext } from '../../hooks/userContext';
+import { User } from '../../assets/userData';
 
 const Post = () => {
   const [data, setData] = useState({});
-  const {username,coins} = user
 
   const router = useRouter()
   const { pid } = router.query
@@ -22,7 +22,11 @@ const Post = () => {
   }, [pid])
 
   return (
-    <CardInfo data={data} router={router} username={username} coins={coins} />
+    <UserContext.Provider value={User}>
+
+      <CardInfo data={data} router={router} />
+
+    </UserContext.Provider>
   )
 }
 
