@@ -1,5 +1,6 @@
 # RickAndMortyApi
 A simple App about Rick and Morty. I made with React.js Next.js 
+https://rickmortyapp11.herokuapp.com/
 
 ## Installation
   1. Go to you cmd and clone this repo (Requeried git)
