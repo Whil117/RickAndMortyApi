@@ -6,7 +6,6 @@ import { CardPages } from '../components/CardPages'
 import { GetCharacters } from '../hooks/useFetch'
 import { GetCard } from '../components/GetCard'
 import { UserContext } from '../hooks/userContext'
-import { User } from '../assets/userData'
 
 const Cards = styled.div`
       font-family: Roboto;
@@ -22,16 +21,16 @@ const index = () => {
   const data = GetCharacters(value)
 
   return (
-      <UserContext.Provider value={User}>
-        <CardNav/>
-        <GetCard useCategory={[character, setCharacter]} />
-        <CardPages value={value} setValue={setValue} />
-        <Cards >
-          {data.filter(item => character === '' ? true : item.name.includes(character)).map((item) => (
-            <Card key={item.id} category={item} />
-          ))}
-        </Cards>
-      </UserContext.Provider>
+    <>
+      <CardNav />
+      <GetCard useCategory={[character, setCharacter]} />
+      <CardPages value={value} setValue={setValue} />
+      <Cards >
+        {data.filter(item => character === '' ? true : item.name.includes(character)).map((item) => (
+          <Card key={item.id} category={item} />
+        ))}
+      </Cards>
+    </>
   )
 }
 export default index

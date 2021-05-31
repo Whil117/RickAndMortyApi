@@ -1,22 +1,17 @@
-import React, { useState, useContext } from 'react'
-import { UserContext } from '../hooks/userContext'
+import React, { useState } from 'react'
 import { CardBackgroudBuy, CardBgButton, CardBuyMsg, CardMsgError } from '../styles/CardBuyStyled'
 
-const CardBuy = ({ cardId, setValidBuy, setPrice, setUserCoin }) => {
+const CardBuy = ({ cardId, coin, setValidBuy, setPrice, setCoins }) => {
 
-  const user = useContext(UserContext)
   const [totalCoins, setTotalCoins] = useState(false)
-  
+
   const handledBuy = () => {
-    user.coins = user.coins - cardId
-    const isValidCoin = user.coins >= 0 ? (
+    const isValidCoin = coin >= 0 ? (
       setValidBuy(false),
       setPrice(true),
-      setUserCoin(user.coins)
-
+      setCoins(coin - cardId)
     ) : (
-      setTotalCoins(true),
-      user.coins = 0
+      setTotalCoins(true)
     )
     return isValidCoin
   }
