@@ -2,7 +2,12 @@ import { useRouter } from 'next/router'
 import { CardInfo } from '../../components/CardInfo';
 import React, { useEffect, useState } from 'react'
 import { UserContext } from '../../hooks/userContext';
-import { User } from '../../assets/userData';
+// import { User } from '../../assets/userData';
+
+const User = {
+  username:'Whil',
+  coins: 999
+}
 
 const Post = () => {
   const [data, setData] = useState({});

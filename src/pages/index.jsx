@@ -5,7 +5,6 @@ import { CardNav } from '../components/CardNav'
 import { CardPages } from '../components/CardPages'
 import { GetCharacters } from '../hooks/useFetch'
 import { GetCard } from '../components/GetCard'
-import { UserContext } from '../hooks/userContext'
 
 const Cards = styled.div`
       font-family: Roboto;
